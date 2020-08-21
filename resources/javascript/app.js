@@ -1,0 +1,1 @@
+console.log("hello from app js in resources");
