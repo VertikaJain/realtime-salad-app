@@ -1,4 +1,26 @@
 body {
-  background: red;
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #232323;
+}
+
+nav li:last-child a {
+  background: #83cc1d;
+}
+
+nav li:last-child a:hover {
+  background: #5e9116;
+}
+
+nav li a {
+  transition: all 0.3s ease-in-out;
+}
+
+nav li a:hover {
+  color: #83cc1d;
+}
+
+section.menu {
+  background: #F8F8F8;
 }
 
