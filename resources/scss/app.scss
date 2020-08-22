@@ -22,3 +22,18 @@ nav li a {
 section.menu {
     background: $secondary;
 }
+
+.size {
+    background: $ternary;
+}
+
+.add-to-cart {
+    border: 2px solid $primary;
+    color: $primary;
+    transition: $smooth;
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+    }
+}

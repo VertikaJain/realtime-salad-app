@@ -21,6 +21,22 @@ nav li a:hover {
 }
 
 section.menu {
-  background: #F8F8F8;
+  background: #fafff1;
+}
+
+.size {
+  background: #cbf18d;
+}
+
+.add-to-cart {
+  border: 2px solid #83cc1d;
+  color: #83cc1d;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-to-cart:hover {
+  background: #83cc1d;
+  border-color: #fff;
+  color: #fff;
 }
 
