@@ -19,7 +19,7 @@ nav li a {
     }
   }
 
-section.menu {
+section.hero {
     background: $secondary;
 }
 
@@ -35,5 +35,20 @@ section.menu {
         background: $primary;
         border-color: $pure;
         color: $pure;
+    }
+}
+
+.btn-primary {
+    background: $primary;
+    transition: $smooth;
+    &:hover {
+        background: $primary-hover;
+    }
+}
+
+section.cart {
+    background: $secondary;
+    .amount {
+        color: $primary;
     }
 }
