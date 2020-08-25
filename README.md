@@ -26,17 +26,17 @@
   2. cd realtime-salad-app (to work in the project folder)
   3. yarn init (Initializes package.json file in root of project)
   4. yarn add express ejs express-ejs-layouts (The above command performs 4 tasks-) 
-    - Writes dependencies to package.json,
-    - Downloads express, ejs and express-ejs-layouts dependencies from there respective repositories on the Cloud,
-    - Adds node_modules folder, which contains all the dependencies like a Tree structure, and
-    - Creates yarn.lock file, which locks down the versions of the dependencies specified in the package.json file.
+      - Writes dependencies to package.json,
+      - Downloads express, ejs and express-ejs-layouts dependencies from there respective repositories on the Cloud,
+      - Adds node_modules folder, which contains all the dependencies like a Tree structure, and
+      - Creates yarn.lock file, which locks down the versions of the dependencies specified in the package.json file.
   5. yarn add nodemon -D (downloads nodemon that automatically restarts the server on any changes in the project & adds nodemon to devDependencies in package.json)
   6. yarn dev (runs the server)
   7. yarn add laravel-mix -D (downloads Laravel Mix, updates node_modules & adds laravel to devDependencies in package.json)
   8. yarn add cross-env --save-dev (to handle different environments)
   9. yarn watch (performs the following tasks -)
-    - installs sass, sass-loader & resolve-url-loader dependencies when executed first time, and saves to package.json.
-    - compiles SCSS & JS files using laravel-mix, and stores the compiled code to public folder i.e. CSS & JS.
+      - installs sass, sass-loader & resolve-url-loader dependencies when executed first time, and saves to package.json.
+      - compiles SCSS & JS files using laravel-mix, and stores the compiled code to public folder i.e. CSS & JS.
 
 ## NPM COMMANDS
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an alternative to YARN. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -78,6 +78,12 @@
   - The watch command automatically compiles the file everytime it is changed, eliminating the need to manually compile repeatedly.
   - cross-env : Runs Scripts that set and use environment variables across platforms (useful in production). 
 
+## layout.ejs
+  - An ejs file that serves the common content such as header, footer and nav bar to all the pages in the application.
+  - Code in other ejs files like home, login and register, is simply embedded using **<%- body%>** after the nav bar.
+
 ## Resources
   - [Google Font Lato](https://fonts.google.com/specimen/Lato)
   - [ES6](https://www.javascripttutorial.net/es6/)
+  - [Using Template Engines](https://expressjs.com/en/guide/using-template-engines.html)
+  - [Building forms with Tailwind CSS](https://tailwindcss.com/components/forms)
