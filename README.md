@@ -20,6 +20,8 @@
   3. Download & Install [GIT](https://git-scm.com/downloads)
   4. Steps for Installing [Laravel](https://laravel-mix.com/docs/5.0/installation#stand-alone-project)
   5. [Using Tailwind CSS via CDN](https://tailwindcss.com/docs/installation#using-tailwind-via-cdn) (No need to install complete framework)
+  6. [MongoDB for Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+  7. [MongoDB Compass](https://www.mongodb.com/try/download/compass)
   
 ## YARN COMMANDS
   1. yarn -v (check version of YARN)
@@ -37,6 +39,7 @@
   9. yarn watch (performs the following tasks -)
       - installs sass, sass-loader & resolve-url-loader dependencies when executed first time, and saves to package.json.
       - compiles SCSS & JS files using laravel-mix, and stores the compiled code to public folder i.e. CSS & JS.
+  10. yarn add mongoose (helps in interaction of JS code with MongoDB)
 
 ## NPM COMMANDS
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an alternative to YARN. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -49,6 +52,7 @@
   7. npm install laravel-mix --save-dev
   8. npm install cross-env --save-dev
   9. npm run watch
+  10. npm install mongoose
 
 ## GIT COMMANDS
   1. git --version (checks version)
@@ -87,3 +91,4 @@
   - [ES6](https://www.javascripttutorial.net/es6/)
   - [Using Template Engines](https://expressjs.com/en/guide/using-template-engines.html)
   - [Building forms with Tailwind CSS](https://tailwindcss.com/components/forms)
+  - [Factory Functions](https://www.youtube.com/watch?v=jpegXpQpb3o)
