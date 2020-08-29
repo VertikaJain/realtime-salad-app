@@ -1,3 +1,4 @@
+require("dotenv").config(); // config will read the .env file, parse the contents, assign it to process.env
 const express = require("express");
 const app = express(); //create express object
 const ejs = require("ejs");
@@ -5,6 +6,8 @@ const expressLayout = require("express-ejs-layouts");
 const path = require("path");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
+const session = require("express-session");
+const flash = require("express-flash");
 
 // Database Connection
 mongoose.connect('mongodb://localhost/salad', {
@@ -18,6 +21,16 @@ connection.once("open", () => {
     console.log("Connection failed. " + err);
 })
 
+// Session Config (the session library works like a middleware)
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours
+}))
+
+app.use(flash());
+
 // Assets
 app.use(express.static('public'));
 
@@ -26,7 +39,7 @@ app.use(expressLayout);
 app.set('views', path.join(__dirname, '/resources/views'));
 app.set('view engine', 'ejs');
 
-require("./routes/web")(app);
+require("./routes/web")(app); //IS EQUIVALENT TO: const web = require("./routes/web"); web(app);
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

@@ -40,6 +40,9 @@
       - installs sass, sass-loader & resolve-url-loader dependencies when executed first time, and saves to package.json.
       - compiles SCSS & JS files using laravel-mix, and stores the compiled code to public folder i.e. CSS & JS.
   10. yarn add mongoose (helps in interaction of JS code with MongoDB)
+  11. yarn add express-session (helps in storing sessions in key-value form)
+  12. yarn add dotenv (a zero-dependency module that loads environment variables from a .env file into process.env)
+  13. yarn add express-flash (used to flash messages for the application)
 
 ## NPM COMMANDS
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an alternative to YARN. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -53,6 +56,9 @@
   8. npm install cross-env --save-dev
   9. npm run watch
   10. npm install mongoose
+  11. npm install express-session
+  12. npm install dotenv
+  13. npm install express-flash
 
 ## GIT COMMANDS
   1. git --version (checks version)
