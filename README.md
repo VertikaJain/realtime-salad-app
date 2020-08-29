@@ -92,9 +92,16 @@
   - An ejs file that serves the common content such as header, footer and nav bar to all the pages in the application.
   - Code in other ejs files like home, login and register, is simply embedded using **<%- body%>** after the nav bar.
 
+## Session Configuration
+  - Done using express-session module, needed to store Cart data in this project.
+  - The server creates & stores a session ID (sid) when a new client Requests for the web page.
+  - Then it sends a message in Response header, which has sid, asking the client to create a cookie using that session id.
+  - For every next request header from client, the cookie will be send to server, so that the server can recognize the client as an existing one.
+
 ## Resources
   - [Google Font Lato](https://fonts.google.com/specimen/Lato)
   - [ES6](https://www.javascripttutorial.net/es6/)
   - [Using Template Engines](https://expressjs.com/en/guide/using-template-engines.html)
   - [Building forms with Tailwind CSS](https://tailwindcss.com/components/forms)
   - [Factory Functions](https://www.youtube.com/watch?v=jpegXpQpb3o)
+  - [Working of Mongoose](https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/)
