@@ -43,6 +43,7 @@
   11. yarn add express-session (helps in storing sessions in key-value form)
   12. yarn add dotenv (a zero-dependency module that loads environment variables from a .env file into process.env)
   13. yarn add express-flash (used to flash messages for the application)
+  14. yarn add axios (promise based HTTP client for the browser and node.js)
 
 ## NPM COMMANDS
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an alternative to YARN. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -59,6 +60,7 @@
   11. npm install express-session
   12. npm install dotenv
   13. npm install express-flash
+  14. npm install axios
 
 ## GIT COMMANDS
   1. git --version (checks version)
@@ -105,3 +107,4 @@
   - [Building forms with Tailwind CSS](https://tailwindcss.com/components/forms)
   - [Factory Functions](https://www.youtube.com/watch?v=jpegXpQpb3o)
   - [Working of Mongoose](https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/)
+  - [Why Axios](https://medium.com/@MinimalGhost/what-is-axios-js-and-why-should-i-care-7eb72b111dc0)
