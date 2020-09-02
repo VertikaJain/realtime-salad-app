@@ -76,3 +76,9 @@ section.login {
 footer {
     color: $primary;
 }
+
+.modify-btns {
+    &:focus {
+        outline: none;
+    }
+}

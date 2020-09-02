@@ -1,6 +1,6 @@
 <section class="cart py-10">
     <% if(session.cart) { %>
-    <div class="order container mx-auto w-1/2">
+    <div class="order container mx-auto px-40">
         <div class="flex items-center border-b border-gray-300 pb-4">
             <img src="/images/cart-black.png" alt="cart-black">
             <h1 class="font-bold ml-4 text-2xl">Order Summary</h1>
@@ -11,10 +11,21 @@
                 <img class="w-24" src="/images/<%= salad.item.image %>" alt="salad">
                 <div class="flex-1 ml-4">
                     <h1><%= salad.item.name %></h1>
-                    <span><%= salad.item.size %></span>
+                    <span class="italic"><%= salad.item.size %></span>
                 </div>
-                <span class="flex-1"><%= salad.qty %> Pcs</span>
-                <span class="font-bold text-lg"><%= salad.item.price * salad.qty %></span>
+                <span class="salad-qty flex-1 text-right"><%= salad.qty %> Pcs</span>
+                <span class="flex-1 text-right">
+                    <button class="modify-btns add-item w-6" data-salad="<%= JSON.stringify(salad) %>"><img
+                            src="/images/plus-circle.png"></button>
+                    <% if(salad.qty > 1) { %>
+                    <button class="modify-btns minus-item w-6" data-salad="<%= JSON.stringify(salad) %>"><img
+                            src="/images/minus-circle.png"></button>
+                    <% } else { %>
+                    <button class="modify-btns remove-item w-6" data-salad="<%= JSON.stringify(salad) %>"><img
+                            src="/images/remove-black.png"></button>
+                    <% } %>
+                </span>
+                <span class="salad-price flex-1 text-right font-bold text-lg">₹<%= salad.item.price * salad.qty %></span>
             </div>
             <% } %>
         </div>

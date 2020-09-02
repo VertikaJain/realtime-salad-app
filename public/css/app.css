@@ -388,3 +388,7 @@ footer {
   color: #83cc1d;
 }
 
+.modify-btns:focus {
+  outline: none;
+}
+
