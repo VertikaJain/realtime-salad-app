@@ -4,6 +4,7 @@ cartController = () => {
             res.render("customers/cart");
         },
         update(req, res) {
+            // console.log(req.session.cart);
             // In case cart is empty
             if (!req.session.cart) {
                 req.session.cart = {
@@ -18,7 +19,13 @@ cartController = () => {
 
             cart.totalQty += 1;
             cart.totalPrice += req.body.price;
-            return res.json({ totalQty: req.session.cart.totalQty })
+            return res.json({
+                totalQty: req.session.cart.totalQty,
+                totalPrice: req.session.cart.totalPrice,
+                qty: cart.items[req.body._id].qty,
+                price: req.body.price
+            })
+            
         }
     }
 }

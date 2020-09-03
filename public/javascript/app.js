@@ -5264,7 +5264,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
-var Noty = __webpack_require__(/*! Noty */ "./node_modules/Noty/lib/noty.js");
+var Noty = __webpack_require__(/*! Noty */ "./node_modules/Noty/lib/noty.js"); // Home Page
+
 
 var addToCartBtns = document.querySelectorAll(".add-to-cart");
 var cartCounter = document.getElementById("cart-counter");
@@ -5283,7 +5284,8 @@ try {
 
   for (_iterator.s(); !(_step = _iterator.n()).done;) {
     _loop();
-  }
+  } // Update Cart method
+
 } catch (err) {
   _iterator.e(err);
 } finally {
@@ -5293,6 +5295,53 @@ try {
 updateCart = function updateCart(salad) {
   axios.post("/update-cart", salad).then(function (res) {
     cartCounter.innerText = res.data.totalQty;
+    new Noty({
+      type: "success",
+      timeout: 1000,
+      text: 'Item added to Cart',
+      progressBar: false
+    }).show();
+  })["catch"](function (err) {
+    new Noty({
+      type: "error",
+      timeout: 1000,
+      text: 'Some error occurred.',
+      progressBar: false
+    }).show();
+  });
+}; // Cart Page
+
+
+var addItems = document.querySelectorAll(".add-item");
+
+var _iterator2 = _createForOfIteratorHelper(addItems),
+    _step2;
+
+try {
+  var _loop2 = function _loop2() {
+    var btn = _step2.value;
+    btn.addEventListener("click", function (event) {
+      plusItemToCart(btn);
+    });
+  };
+
+  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+    _loop2();
+  } // Plus Button functionality
+
+} catch (err) {
+  _iterator2.e(err);
+} finally {
+  _iterator2.f();
+}
+
+plusItemToCart = function plusItemToCart(btn) {
+  var salad = JSON.parse(btn.dataset.salad).item;
+  axios.post("/update-cart", salad).then(function (res) {
+    cartCounter.innerText = res.data.totalQty;
+    btn.parentElement.previousElementSibling.innerText = res.data.qty + " Pcs";
+    btn.parentElement.nextElementSibling.innerText = "₹" + res.data.qty * res.data.price;
+    document.querySelector(".amount").innerText = "₹" + res.data.totalPrice;
     new Noty({
       type: "success",
       timeout: 1000,
