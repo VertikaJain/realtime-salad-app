@@ -10,6 +10,7 @@ initRoutes = (app) => {
     app.get('/register', authController().register);
 
     app.post('/update-cart', cartController().update);
+    app.post('/minus-item-from-cart', cartController().minusItem);
 }
 
 module.exports = initRoutes;

@@ -5313,6 +5313,8 @@ updateCart = function updateCart(salad) {
 
 
 var addItems = document.querySelectorAll(".add-item");
+var minusItems = document.querySelectorAll(".minus-item");
+var removeItems = document.querySelectorAll(".remove-item");
 
 var _iterator2 = _createForOfIteratorHelper(addItems),
     _step2;
@@ -5321,42 +5323,80 @@ try {
   var _loop2 = function _loop2() {
     var btn = _step2.value;
     btn.addEventListener("click", function (event) {
-      plusItemToCart(btn);
+      var salad = JSON.parse(btn.dataset.salad).item;
+      axios.post("/update-cart", salad).then(function (res) {
+        cartCounter.innerText = res.data.totalQty;
+        btn.parentElement.previousElementSibling.innerText = res.data.qty + " Pcs";
+        btn.parentElement.nextElementSibling.innerText = "₹" + res.data.qty * res.data.price;
+        document.querySelector(".amount").innerText = "₹" + res.data.totalPrice;
+        if (res.data.qty == 2) // to upgrade dustbin button to minus button
+          location.reload();
+        new Noty({
+          type: "success",
+          timeout: 1000,
+          text: 'Item added to Cart',
+          progressBar: false
+        }).show();
+      })["catch"](function (err) {
+        new Noty({
+          type: "error",
+          timeout: 1000,
+          text: 'Some error occurred.',
+          progressBar: false
+        }).show();
+      });
     });
   };
 
   for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
     _loop2();
-  } // Plus Button functionality
-
+  }
 } catch (err) {
   _iterator2.e(err);
 } finally {
   _iterator2.f();
 }
 
-plusItemToCart = function plusItemToCart(btn) {
-  var salad = JSON.parse(btn.dataset.salad).item;
-  axios.post("/update-cart", salad).then(function (res) {
-    cartCounter.innerText = res.data.totalQty;
-    btn.parentElement.previousElementSibling.innerText = res.data.qty + " Pcs";
-    btn.parentElement.nextElementSibling.innerText = "₹" + res.data.qty * res.data.price;
-    document.querySelector(".amount").innerText = "₹" + res.data.totalPrice;
-    new Noty({
-      type: "success",
-      timeout: 1000,
-      text: 'Item added to Cart',
-      progressBar: false
-    }).show();
-  })["catch"](function (err) {
-    new Noty({
-      type: "error",
-      timeout: 1000,
-      text: 'Some error occurred.',
-      progressBar: false
-    }).show();
-  });
-};
+var _iterator3 = _createForOfIteratorHelper(minusItems),
+    _step3;
+
+try {
+  var _loop3 = function _loop3() {
+    var btn = _step3.value;
+    btn.addEventListener("click", function (event) {
+      var salad = JSON.parse(btn.dataset.salad);
+      axios.post("/minus-item-from-cart", salad.item).then(function (res) {
+        cartCounter.innerText = res.data.totalQty;
+        btn.parentElement.previousElementSibling.innerText = res.data.qty + " Pcs";
+        btn.parentElement.nextElementSibling.innerText = "₹" + res.data.qty * res.data.price;
+        if (res.data.qty == 1) // to downgrade minus button to dustbin button
+          location.reload();
+        document.querySelector(".amount").innerText = "₹" + res.data.totalPrice;
+        new Noty({
+          type: "success",
+          timeout: 1000,
+          text: 'Item removed from Cart',
+          progressBar: false
+        }).show();
+      })["catch"](function (err) {
+        new Noty({
+          type: "error",
+          timeout: 1000,
+          text: 'Some error occurred.',
+          progressBar: false
+        }).show();
+      });
+    });
+  };
+
+  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+    _loop3();
+  }
+} catch (err) {
+  _iterator3.e(err);
+} finally {
+  _iterator3.f();
+}
 
 /***/ }),
 
