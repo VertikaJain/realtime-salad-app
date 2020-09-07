@@ -27,18 +27,30 @@ cartController = () => {
         },
         minusItem(req, res) {
             let cart = req.session.cart;
-            if (cart.items[req.body._id].qty > 0) {
-                cart.items[req.body._id].qty -= 1;
-                cart.totalQty -= 1;
-                cart.totalPrice -= req.body.price;
+            cart.items[req.body._id].qty -= 1;
+            cart.totalQty -= 1;
+            cart.totalPrice -= req.body.price;
+            // Case 1: When selected item is deleted
+            if (cart.items[req.body._id].qty == 0) {
+                delete cart.items[req.body._id];
+                // Case 2: When all items are deleted
+                if (cart.totalQty == 0) {
+                    delete req.session.cart;
+                    delete cart;
+                    return res.json();
+                }
+                return res.json({
+                    totalQty: req.session.cart.totalQty,
+                    totalPrice: req.session.cart.totalPrice,
+                })
             }
+            // Case 3: When selected item is reduced by 1 quantity
             return res.json({
                 totalQty: req.session.cart.totalQty,
                 totalPrice: req.session.cart.totalPrice,
                 qty: cart.items[req.body._id].qty,
                 price: req.body.price
             })
-
         }
     }
 }
