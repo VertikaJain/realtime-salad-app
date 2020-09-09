@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "5eee651f739f8c674fd736ee"
+  },
+  "name": "Radicchio Salad with Caramelized Carrots and Onions",
+  "image": "radicchioSaladWithCaramelizedCarrotsAndOnions.jpg",
+  "price": "250",
+  "yield": "8–10 servings"
+},{
+  "_id": {
+    "$oid": "5eee6671a27a66807cf2bea3"
+  },
+  "name": "Grilled Thai Green Bean Salad with Creamy Avocado",
+  "image": "grilledThaiGreenBeanSalad.jpg",
+  "price": "300",
+  "yield": "Serves 6"
+},{
+  "_id": {
+    "$oid": "5eee6692a27a66807cf2bea4"
+  },
+  "name": "Massaged Kale with Tomatoes, Creamed Mozzarella, and Rice",
+  "image": "creamedMozzarellaBurrataKaleSalad.jpg",
+  "price": "200",
+  "yield": "6-8 servings"
+},{
+  "_id": {
+    "$oid": "5eee66a5a27a66807cf2bea5"
+  },
+  "name": "Squash and Radicchio Salad with Pecans",
+  "image": "squashAndRadicchioSaladWithPecans.jpg",
+  "price": "500",
+  "yield": "8–10 servings"
+},{
+  "_id": {
+    "$oid": "5eee66c4a27a66807cf2bea6"
+  },
+  "name": "Bitter Greens Salad with Melted Cheese",
+  "image": "bitterGreensSaladWithMeltedCheese.jpg",
+  "price": "350",
+  "yield": "Serves 6"
+},{
+  "_id": {
+    "$oid": "5eee66cfa27a66807cf2bea7"
+  },
+  "name": "Winter Salad Hummus Bowls with Savory Granola",
+  "image": "winterSaladPowerSprinkle.jpg",
+  "price": "200",
+  "yield": "4 servings"
+},{
+  "_id": {
+    "$oid": "5eee66eea27a66807cf2bea8"
+  },
+  "name": "Cracked Farro and Broccoli Salad",
+  "image": "crackedFarroSaladWithCrunchyVegetables.jpg",
+  "price": "600",
+  "yield": "Serves 4"
+},{
+  "_id": {
+    "$oid": "5eee6717a27a66807cf2bea9"
+  },
+  "name": "Blood Orange and Mixed Bean Salad With Sprouts",
+  "image": "bloodOrangeandMixedBeanSalad.jpg",
+  "price": "500",
+  "yield": "8–10 servings"
+}]

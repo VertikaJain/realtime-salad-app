@@ -5,7 +5,7 @@ const menuSchema = new Schema({ // constructor
     name: { type: String, required: true },
     image: { type: String, required: true }, // stored in form of url
     price: { type: Number, required: true },
-    size: { type: String, required: true },
+    yield: { type: String, required: true },
 });
 
 // creating model
