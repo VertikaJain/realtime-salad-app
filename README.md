@@ -2,9 +2,9 @@
   - A real time application to track orders online. Users can order Salads, view cart, and check the delivery status.
   - Part of 100 days of code challenge.
 
-## TECHNOLOGY STACK
+## Technology Stack
   1. JavaScript - NodeJS Framework
-  2. Express JS
+  2. ExpressJS
   3. EJS Template
   4. YARN (package manager)
   5. MongoDB
@@ -14,7 +14,7 @@
   9. ES6
   10. SCSS
 
-## INSTALLATIONS
+## Installations
   1. Download & Install [NodeJS](https://nodejs.org/en/download/)
   2. Download & Install [YARN](https://classic.yarnpkg.com/en/docs/install#windows-stable)
   3. Download & Install [GIT](https://git-scm.com/downloads)
@@ -23,7 +23,7 @@
   6. [MongoDB for Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
   7. [MongoDB Compass](https://www.mongodb.com/try/download/compass)
   
-## YARN COMMANDS
+## YARN Commands
   1. yarn -v (check version of YARN)
   2. cd realtime-salad-app (to work in the project folder)
   3. yarn init (Initializes package.json file in root of project)
@@ -45,9 +45,10 @@
   13. yarn add express-flash (used to flash messages for the application)
   14. yarn add axios (promise based HTTP client for the browser and node.js)
   15. yarn add noty (notification library that makes it easy to create alert, success, error, warning, information and confirmation messages)
+  16. yarn add bcrypt (A library which helps in hashing passwords)
 
-## NPM COMMANDS
-  *NPM package manager is automatically downloaded with NodeJS, and it can be used as an alternative to YARN. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
+## NPM Commands
+  *NPM package manager is automatically downloaded with NodeJS, and it can be used as an **alternative to YARN**. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
   1. npm -v
   2. cd realtime-salad-app
   3. npm init
@@ -63,8 +64,10 @@
   13. npm install express-flash
   14. npm install axios
   15. npm install noty
+  16. npm install bcrypt
 
-## GIT COMMANDS
+## GIT Commands
+```
   1. git --version (checks version)
   2. git init (creates .git file )
   3. git status (to check if files are committed or not)
@@ -74,6 +77,7 @@
   7. git status (recheck files)
   8. [.gitignore commands](https://stackoverflow.com/questions/12501324/how-to-use-gitignore-command-in-git)
   9. [.gitignore for NodeJS guide](https://github.com/github/gitignore/blob/master/Node.gitignore)
+```
   
 ## Why use Laravel Mix?
   - A tool used to compile resources like modern JavaScript and SCSS code and store it to the public folder in JS and CSS format. 
@@ -94,22 +98,38 @@
 
 ## layout.ejs
   - An ejs file that serves the common content such as header, footer and nav bar to all the pages in the application.
-  - Code in other ejs files like home, login and register, is simply embedded using **<%- body%>** after the nav bar.
+  - Code in other ejs files like home, login and register, is simply embedded using `<%- body%>` after the nav bar.
 
 ## Session Configuration
   - Done using express-session module, needed to store Cart data in this project.
   - The server creates & stores a session ID (sid) when a new client Requests for the web page.
   - Then it sends a message in Response header, which has sid, asking the client to create a cookie using that session id.
   - For every next request header from client, the cookie will be send to server, so that the server can recognize the client as an existing one.
+  
+## Express Methods (Assets)
+  *Built-in middleware functions in Express.*
+  - [express.static()](https://expressjs.com/en/4x/api.html#express.static)
+  - [express.json()](https://expressjs.com/en/api.html#express.json)
+  - [express.urlencoded()](https://expressjs.com/en/4x/api.html#express.urlencoded)
+  
+## Hashing Passwords using bcrypt library
+  *Using [bcrypt](https://www.npmjs.com/package/bcrypt) is a secured way to store passwords in a database regardless of whatever language the app’s backend is built in — PHP, Ruby, Python, Node.js.*
+  ```
+  const bcrpyt = require("bcrypt")
+  const hashedPassword = await bcrpyt.hash(password, 10)
+  ```
 
 ## Resources
+  - [Realtime Pizza App by Coder's Gyan](https://www.youtube.com/watch?v=RqiU5nzj_nU&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&ab_channel=Coder%27sGyan)
   - [Google Font Lato](https://fonts.google.com/specimen/Lato)
   - [ES6](https://www.javascripttutorial.net/es6/)
   - [Using Template Engines](https://expressjs.com/en/guide/using-template-engines.html)
   - [Building forms with Tailwind CSS](https://tailwindcss.com/components/forms)
   - [Factory Functions](https://www.youtube.com/watch?v=jpegXpQpb3o)
+  - [Using DB with Mongoose MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose)
   - [Working of Mongoose](https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/)
   - [Why Axios](https://medium.com/@MinimalGhost/what-is-axios-js-and-why-should-i-care-7eb72b111dc0)
-  - [express.json()](https://expressjs.com/en/api.html#express.json)
   - [Using Middleware](https://expressjs.com/en/guide/using-middleware.html)
   - [res.locals](https://expressjs.com/en/api.html#res.locals)
+  - [Object Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+  - [bcrypt JS Working](https://medium.com/javascript-in-plain-english/how-bcryptjs-works-90ef4cb85bf4)
