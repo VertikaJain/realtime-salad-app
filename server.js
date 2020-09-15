@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("express-flash");
 const MongoDbStore = require("connect-mongo")(session);
+const passport = require("passport");
 
 // Database Connection
 mongoose.connect('mongodb://localhost/salad', {
@@ -21,6 +22,13 @@ connection.once("open", () => {
 }).catch(err => {
     console.log("Connection failed. " + err);
 })
+
+// Passport Config (authentication middleware for Node.js)
+// require("./app/config/passport")(passport);
+const passportInit = require("./app/config/passport");
+passportInit(passport);
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Session Store
 const mongoStore = new MongoDbStore({
