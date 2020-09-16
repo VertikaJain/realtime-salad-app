@@ -23,13 +23,6 @@ connection.once("open", () => {
     console.log("Connection failed. " + err);
 })
 
-// Passport Config (authentication middleware for Node.js)
-// require("./app/config/passport")(passport);
-const passportInit = require("./app/config/passport");
-passportInit(passport);
-app.use(passport.initialize())
-app.use(passport.session())
-
 // Session Store
 const mongoStore = new MongoDbStore({
     mongooseConnection: connection,
@@ -45,6 +38,11 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours
 }))
 
+// Passport Config (authentication middleware for Node.js)
+require("./app/config/passport")(passport);
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(flash());
 
 // Assets
@@ -55,6 +53,7 @@ app.use(express.urlencoded({ extended: false }))
 // Global Middlewares
 app.use((req, res, next) => {
     res.locals.session = req.session;
+    res.locals.user = req.user;
     next();
 })
 
