@@ -29,6 +29,10 @@ authController = () => {
                 })
             })(req, res, next);
         },
+        logout(req, res) {
+            req.logout();
+            return res.redirect("/login");
+        },
         register(req, res) {
             res.render("auth/register");
         },

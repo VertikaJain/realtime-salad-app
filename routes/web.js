@@ -16,6 +16,7 @@ initRoutes = (app) => {
     app.post('/minus-item-from-cart', cartController().minusItem);
     app.post('/register', authController().postRegister);
     app.post('/login', authController().postLogin);
+    app.post('/logout', authController().logout);
 }
 
 module.exports = initRoutes;
