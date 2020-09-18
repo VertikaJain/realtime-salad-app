@@ -13,6 +13,11 @@
   8. Socket.io
   9. ES6
   10. SCSS
+  
+## Project Structure - MVC pattern
+  1. `Model` is the Database part of the application. It represents the structure of data, the format and the constraints with which it is stored.
+  2. `View` is the User Interface part. It utilizes the Model(using controllers) and presents data as static/dynamic pages to the user for further tasks.
+  3. `Controller` is the request-response handler. The user interacts with the View, which in turn generates a request, that will be handled by a controller. The controller renders the appropriate view with the model data as a response.
 
 ## Installations
   1. Download & Install [NodeJS](https://nodejs.org/en/download/)
@@ -118,6 +123,10 @@
   const bcrpyt = require("bcrypt")
   const hashedPassword = await bcrpyt.hash(password, 10)
   ```
+  
+## Passport - authentication middleware for Node.js
+  **passport-local** is a passport strategy for authenticating with a username and password.
+  [Usage/Configuration](https://github.com/jaredhanson/passport-local/#usage)
 
 ## Resources
   - [Realtime Pizza App by Coder's Gyan](https://www.youtube.com/watch?v=RqiU5nzj_nU&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&ab_channel=Coder%27sGyan)
@@ -133,3 +142,5 @@
   - [res.locals](https://expressjs.com/en/api.html#res.locals)
   - [Object Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
   - [bcrypt JS Working](https://medium.com/javascript-in-plain-english/how-bcryptjs-works-90ef4cb85bf4)
+  - [Constructor Functions](https://www.youtube.com/watch?v=23AOrSN-wmI&ab_channel=ProgrammingwithMosh)
+  - [Passport-local](http://www.passportjs.org/packages/passport-local/)
