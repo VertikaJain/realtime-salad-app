@@ -51,6 +51,7 @@
   14. yarn add axios (promise based HTTP client for the browser and node.js)
   15. yarn add noty (notification library that makes it easy to create alert, success, error, warning, information and confirmation messages)
   16. yarn add bcrypt (A library which helps in hashing passwords)
+  17. yarn add passport passport-local (Authentication)
 
 ## NPM Commands
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an **alternative to YARN**. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -70,6 +71,7 @@
   14. npm install axios
   15. npm install noty
   16. npm install bcrypt
+  17. npm install passport passport-local
 
 ## GIT Commands
 ```
@@ -117,6 +119,18 @@
   - [express.json()](https://expressjs.com/en/api.html#express.json)
   - [express.urlencoded()](https://expressjs.com/en/4x/api.html#express.urlencoded)
   
+## Database Connectivity - MongoDB, NodeJS & Mongoose
+  - Mongoose is an Object Data Modeling library, that provides object mapping between MongoDB and NodeJS.
+  - Connection is established using `mongoose.connect()` for single connection, or `mongoose.createConnection()` for multiple connections.
+  - A Schema helps in defining the fields stored in each document along with their validation requirements and default values.
+  - The timestamps parameter helps to add createdAt and updatedAt properties automatically to the particular document in the collection.
+  - Schemas are then "compiled" into Models using the mongoose.model() method.
+      - `const MyModel = mongoose.model('ModelName', mySchemaName);`
+      - The first argument is the singular name of the collection your model is for. Mongoose automatically looks for the plural version of your model name. 
+  - [Mongoose exists() method](https://kb.objectrocket.com/mongo-db/the-mongoose-exists-function-1022)
+  - [Mongoose findById() method](https://kb.objectrocket.com/mongo-db/mongoose-findbyid-1415)
+  - [Mongoose findOne() method](https://kb.objectrocket.com/mongo-db/mongoose-find-one-1409)
+
 ## Hashing Passwords using bcrypt library
   *Using [bcrypt](https://www.npmjs.com/package/bcrypt) is a secured way to store passwords in a database regardless of whatever language the app’s backend is built in — PHP, Ruby, Python, Node.js.*
   ```
@@ -125,8 +139,14 @@
   ```
   
 ## Passport - authentication middleware for Node.js
-  **passport-local** is a passport strategy for authenticating with a username and password.
-  [Usage/Configuration](https://github.com/jaredhanson/passport-local/#usage)
+  - **passport-local** is a passport strategy for authenticating with a username and password.
+  - [Usage/Configuration](https://github.com/jaredhanson/passport-local/#usage)
+  - [Middlewares](http://www.passportjs.org/docs/configure/)
+      - passport.initialize()
+      - passport.session()
+  - Passport will serialize and deserialize user instances to and from the session using:
+      - passport.serializeUser()
+      - passport.deserializeUser()
 
 ## Resources
   - [Realtime Pizza App by Coder's Gyan](https://www.youtube.com/watch?v=RqiU5nzj_nU&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&ab_channel=Coder%27sGyan)
