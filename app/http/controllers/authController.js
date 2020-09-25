@@ -8,6 +8,12 @@ authController = () => {
             res.render("auth/login");
         },
         postLogin(req, res, next) {
+            const { email, password } = req.body;
+            // Validation check
+            if (!email || !password) {
+                req.flash("error", "All fields are required.");
+                return res.redirect("/login");
+            }
             passport.authenticate("local", (err, user, info) => { // returns a method that has to be called.
                 // In case null is returned through done()
                 if (err) {
