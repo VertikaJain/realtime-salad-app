@@ -25,7 +25,8 @@
                             src="/images/remove-black.png"></button>
                     <% } %>
                 </span>
-                <span class="salad-price flex-1 text-right font-bold text-lg">₹<%= salad.item.price * salad.qty %></span>
+                <span
+                    class="salad-price flex-1 text-right font-bold text-lg">₹<%= salad.item.price * salad.qty %></span>
             </div>
             <% } %>
         </div>
@@ -35,19 +36,27 @@
                 <span class="text-lg font-bold">Total Amount: </span>
                 <span class="amount text-2xl font-bold ml-2">₹<%= session.cart.totalPrice %></span>
             </div>
+            <% if (user) { %>
             <div>
-                <form action="" class="mt-10">
-                    <input class="border border-gray-400 p-2 w-1/2 mb-4" type="text" placeholder="Phone Number">
-                    <input class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Address">
-                    <!-- <div>
-                        <button class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-6" type="submit">Order
-                            Now</button>
-                    </div> -->
+                <form action="/orders" method="POST" class="mt-10">
+                    <% if(messages.error) { %>
+                    <div class="text-red-500 text-sm"><%= messages.error%></div>
+                    <% } %>
+                    <input name="phone" class="border border-gray-400 p-2 w-1/2 mb-4" type="text"
+                        placeholder="Phone Number">
+                    <input name="address" class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Address">
+                    <div>
+                        <button
+                            class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-6 rounded focus:outline-none focus:shadow-outline"
+                            type="submit">Order Now</button>
+                    </div>
                 </form>
             </div>
-            <a href=""
-                class="inline-block cursor-pointer btn-primary px-6 py-2 rounded-full text-white font-bold mt-6">Login
+            <% } else { %>
+            <a href="/login"
+                class="inline-block cursor-pointer btn-primary px-6 py-2 rounded-full text-white font-bold mt-6 rounded focus:outline-none focus:shadow-outline">Login
                 to Continue</a>
+            <% } %>
         </div>
     </div>
     <% } else { %>
