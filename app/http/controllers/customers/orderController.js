@@ -3,7 +3,6 @@ const Order = require("../../../models/order");
 orderController = () => {
     return {
         store(req, res) {
-            console.log(req.body);
             // Validate Request fields
             const { phone, address } = req.body;
             if (!phone || !address) {
@@ -20,6 +19,10 @@ orderController = () => {
                 req.flash("error", "Something went wrong");
                 return res.redirect("/cart");
             })
+        },
+        async index(req, res) {
+            const orders = await Order.find({ customerId: req.user._id });
+            res.render("customers/orders", { orders }); //opening orders.ejs
         }
     }
 }

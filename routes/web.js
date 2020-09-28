@@ -8,11 +8,14 @@ const guest = require("../app/http/middleware/guest");
 
 // Initialize Routes
 initRoutes = (app) => {
+    // Loading pages from Server to Client side.
     app.get('/', homeController().index); //root path
     app.get('/cart', cartController().index);
     app.get('/login', guest, authController().login);
     app.get('/register', guest, authController().register);
+    app.get('/customer/orders',orderController().index);
 
+    // Saving data from Client to Server side.
     app.post('/update-cart', cartController().update);
     app.post('/minus-item-from-cart', cartController().minusItem);
     app.post('/register', authController().postRegister);

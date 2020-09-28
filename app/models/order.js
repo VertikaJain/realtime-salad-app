@@ -8,7 +8,7 @@ const orderSchema = new Schema({
     address: { type: String, required: true },
     paymentType: { type: String, default: "COD" },
     status: { type: String, default: "order_placed" },
-});
+}, { timestamps: true });
 
 // creating model i.e. compiling Schema into a model.
 module.exports = mongoose.model("Order", orderSchema);
