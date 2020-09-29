@@ -5399,11 +5399,20 @@ try {
 
   for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
     _loop3();
-  }
+  } // Remove Order Alert Message from Customer Order page
+
 } catch (err) {
   _iterator3.e(err);
 } finally {
   _iterator3.f();
+}
+
+var successAlert = document.getElementById("success-alert");
+
+if (successAlert) {
+  setTimeout(function () {
+    successAlert.remove();
+  }, 2000);
 }
 
 /***/ }),

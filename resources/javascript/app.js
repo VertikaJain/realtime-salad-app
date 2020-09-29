@@ -85,3 +85,11 @@ for (let btn of minusItems) {
         })
     })
 }
+
+// Remove Order Alert Message from Customer Order page
+const successAlert = document.getElementById("success-alert");
+if (successAlert) {
+    setTimeout(() => {
+        successAlert.remove();
+    }, 2000);
+}
