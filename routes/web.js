@@ -5,6 +5,8 @@ const orderController = require("../app/http/controllers/customers/orderControll
 
 // Applying middleware 'guest' to ensure that user redirects to login/register page only when logged out.
 const guest = require("../app/http/middleware/guest");
+// Applying middleware 'auth' to ensure that user redirects to customer/orders page only when logged in.
+const auth = require("../app/http/middleware/auth");
 
 // Initialize Routes
 initRoutes = (app) => {
@@ -13,7 +15,7 @@ initRoutes = (app) => {
     app.get('/cart', cartController().index);
     app.get('/login', guest, authController().login);
     app.get('/register', guest, authController().register);
-    app.get('/customer/orders',orderController().index);
+    app.get('/customer/orders', auth, orderController().index);
 
     // Saving data from Client to Server side.
     app.post('/update-cart', cartController().update);
@@ -21,7 +23,7 @@ initRoutes = (app) => {
     app.post('/register', authController().postRegister);
     app.post('/login', authController().postLogin);
     app.post('/logout', authController().logout);
-    app.post('/orders', orderController().store);
+    app.post('/orders', auth, orderController().store);
 }
 
 module.exports = initRoutes;
