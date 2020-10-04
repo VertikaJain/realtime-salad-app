@@ -1,5 +1,6 @@
 const axios = require("axios");
-const Noty = require("Noty");
+const Noty = require("noty");
+const initAdmin = require("./admin")
 
 // Home Page
 let addToCartBtns = document.querySelectorAll(".add-to-cart");
@@ -93,3 +94,5 @@ if (successAlert) {
         successAlert.remove();
     }, 2000);
 }
+
+initAdmin(); // A separate file for admin functionalities
