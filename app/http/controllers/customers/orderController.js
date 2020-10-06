@@ -28,6 +28,7 @@ orderController = () => {
                 {
                     sort: { "createdAt": -1 } // Sorting Orders on the basis of Date in Descending order
                 });
+            res.header('Cache-Control', 'no-store')
             res.render("customers/orders", { orders, moment }); //opening orders.ejs
         }
     }
