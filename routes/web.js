@@ -8,6 +8,8 @@ const adminOrderController = require("../app/http/controllers/admin/orderControl
 const guest = require("../app/http/middleware/guest");
 // Applying middleware 'auth' to ensure that user redirects to customer/orders page only when logged in.
 const auth = require("../app/http/middleware/auth");
+// Applying middleware 'admin' to ensure that only the admin has access to the admin/orders page once logged in.
+const admin = require("../app/http/middleware/admin");
 
 // Initialize Routes
 initRoutes = (app) => {
@@ -17,7 +19,7 @@ initRoutes = (app) => {
     app.get('/login', guest, authController().login);
     app.get('/register', guest, authController().register);
     app.get('/customer/orders', auth, orderController().index);
-    app.get('/admin/orders', auth, adminOrderController().index);
+    app.get('/admin/orders', admin, adminOrderController().index);
 
     // Saving data from Client to Server side.
     app.post('/update-cart', cartController().update);

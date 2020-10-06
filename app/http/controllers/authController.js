@@ -8,6 +8,9 @@ authController = () => {
             res.render("auth/login");
         },
         postLogin(req, res, next) {
+            const _getRedirectPage = req => {
+                return req.user.role === "admin" ? "/admin/orders" : "/customer/orders";
+            }
             const { email, password } = req.body;
             // Validation check
             if (!email || !password) {
@@ -31,7 +34,8 @@ authController = () => {
                         req.flash("error", info.message);
                         return next(err);
                     }
-                    res.redirect("/");
+                    // Redirect to Orders page for Customer/Admin as per request.
+                    res.redirect(_getRedirectPage(req));
                 })
             })(req, res, next);
         },
