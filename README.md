@@ -29,29 +29,30 @@
   7. [MongoDB Compass](https://www.mongodb.com/try/download/compass)
   
 ## YARN Commands
-  1. yarn -v (check version of YARN)
-  2. cd realtime-salad-app (to work in the project folder)
-  3. yarn init (Initializes package.json file in root of project)
-  4. yarn add express ejs express-ejs-layouts (The above command performs 4 tasks-) 
+  1. `yarn -v` (check version of YARN)
+  2. `cd realtime-salad-app` (to work in the project folder)
+  3. `yarn init` (Initializes package.json file in root of project)
+  4. `yarn add express ejs express-ejs-layouts` (The above command performs 4 tasks-) 
       - Writes dependencies to package.json,
       - Downloads express, ejs and express-ejs-layouts dependencies from there respective repositories on the Cloud,
       - Adds node_modules folder, which contains all the dependencies like a Tree structure, and
       - Creates yarn.lock file, which locks down the versions of the dependencies specified in the package.json file.
-  5. yarn add nodemon -D (downloads nodemon that automatically restarts the server on any changes in the project & adds nodemon to devDependencies in package.json)
-  6. yarn dev (runs the server)
-  7. yarn add laravel-mix -D (downloads Laravel Mix, updates node_modules & adds laravel to devDependencies in package.json)
-  8. yarn add cross-env --save-dev (to handle different environments)
-  9. yarn watch (performs the following tasks -)
+  5. `yarn add nodemon -D` (downloads nodemon that automatically restarts the server on any changes in the project & adds nodemon to devDependencies in package.json)
+  6. `yarn dev` (runs the server)
+  7. `yarn add laravel-mix -D` (downloads Laravel Mix, updates node_modules & adds laravel to devDependencies in package.json)
+  8. `yarn add cross-env --save-dev` (to handle different environments)
+  9. `yarn watch` (performs the following tasks -)
       - installs sass, sass-loader & resolve-url-loader dependencies when executed first time, and saves to package.json.
       - compiles SCSS & JS files using laravel-mix, and stores the compiled code to public folder i.e. CSS & JS.
-  10. yarn add mongoose (helps in interaction of JS code with MongoDB)
-  11. yarn add express-session (helps in storing sessions in key-value form)
-  12. yarn add dotenv (a zero-dependency module that loads environment variables from a .env file into process.env)
-  13. yarn add express-flash (used to flash messages for the application)
-  14. yarn add axios (promise based HTTP client for the browser and node.js)
-  15. yarn add noty (notification library that makes it easy to create alert, success, error, warning, information and confirmation messages)
-  16. yarn add bcrypt (A library which helps in hashing passwords)
-  17. yarn add passport passport-local (Authentication)
+  10. `yarn add mongoose` (helps in interaction of JS code with MongoDB)
+  11. `yarn add express-session` (helps in storing sessions in key-value form)
+  12. `yarn add dotenv` (a zero-dependency module that loads environment variables from a .env file into process.env)
+  13. `yarn add express-flash` (used to flash messages for the application)
+  14. `yarn add axios` (promise based HTTP client for the browser and node.js)
+  15. `yarn add noty` (notification library that makes it easy to create alert, success, error, warning, information and confirmation messages)
+  16. `yarn add bcrypt` (A library which helps in hashing passwords)
+  17. `yarn add passport passport-local` (Authentication)
+  18. `yarn add moment` (A JavaScript date library for parsing, validating, manipulating, and formatting dates.)
 
 ## NPM Commands
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an **alternative to YARN**. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -72,6 +73,7 @@
   15. npm install noty
   16. npm install bcrypt
   17. npm install passport passport-local
+  18. npm install moment
 
 ## GIT Commands
 ```
@@ -130,6 +132,7 @@
   - [Mongoose exists() method](https://kb.objectrocket.com/mongo-db/the-mongoose-exists-function-1022)
   - [Mongoose findById() method](https://kb.objectrocket.com/mongo-db/mongoose-findbyid-1415)
   - [Mongoose findOne() method](https://kb.objectrocket.com/mongo-db/mongoose-find-one-1409)
+  - [Mongoose populate() method](https://mongoosejs.com/docs/populate.html)
 
 ## Hashing Passwords using bcrypt library
   *Using [bcrypt](https://www.npmjs.com/package/bcrypt) is a secured way to store passwords in a database regardless of whatever language the app’s backend is built in — PHP, Ruby, Python, Node.js.*
@@ -148,6 +151,12 @@
       - passport.serializeUser()
       - passport.deserializeUser()
 
+## User-defined Middlewares for authentication
+*Middlewares are methods that can be executed before calling other methods/functionalities, and can also pause further execution based on given logic in the middleware at the time of request. Hence it alters the response.*
+  - 'guest' middleware ensures that user redirects to login/register page only when logged out.
+  - 'auth' middleware ensures that user redirects to customer/orders page only when logged in.
+  - 'admin' middleware ensures that only the admin has access to the admin/orders page once logged in.
+
 ## Resources
   - [Realtime Pizza App by Coder's Gyan](https://www.youtube.com/watch?v=RqiU5nzj_nU&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&ab_channel=Coder%27sGyan)
   - [Google Font Lato](https://fonts.google.com/specimen/Lato)
@@ -164,3 +173,6 @@
   - [bcrypt JS Working](https://medium.com/javascript-in-plain-english/how-bcryptjs-works-90ef4cb85bf4)
   - [Constructor Functions](https://www.youtube.com/watch?v=23AOrSN-wmI&ab_channel=ProgrammingwithMosh)
   - [Passport-local](http://www.passportjs.org/packages/passport-local/)
+  - [Moment.js](https://momentjs.com/)
+  - [req.xhr](https://expressjs.com/en/4x/api.html#req.xhr)
+  - [Cache Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control)
