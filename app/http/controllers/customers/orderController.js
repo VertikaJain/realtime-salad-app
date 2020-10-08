@@ -10,8 +10,8 @@ orderController = () => {
                 req.flash("error", "All fields are required.");
                 return res.redirect("/cart");
             }
-            // Store 
-            const order = new Order({
+            // Store/save Orders data to orders collection in MongoDB
+            new Order({
                 customerId: req.user._id, items: req.session.cart.items, phone, address
             }).save().then(result => {
                 req.flash("success", "Order placed successfully.");

@@ -1,5 +1,3 @@
-const { models } = require("mongoose");
-
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
@@ -21,7 +19,7 @@ init = passport => {
             return done(null, false, { message: "Something went wrong." });
         })
     }))
-    // Storing user data in session
+    // Storing user data (ID) in session after successful login
     passport.serializeUser((user, done) => {
         done(null, user._id);
     })
