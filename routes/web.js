@@ -3,6 +3,7 @@ const authController = require("../app/http/controllers/authController");
 const cartController = require("../app/http/controllers/customers/cartController");
 const orderController = require("../app/http/controllers/customers/orderController");
 const adminOrderController = require("../app/http/controllers/admin/orderController");
+const adminOrderStatusController = require("../app/http/controllers/admin/statusController");
 
 // Applying middleware 'guest' to ensure that user redirects to login/register page only when logged out.
 const guest = require("../app/http/middleware/guest");
@@ -28,6 +29,7 @@ initRoutes = (app) => {
     app.post('/login', authController().postLogin);
     app.post('/logout', authController().logout);
     app.post('/orders', auth, orderController().store);
+    app.post('/admin/order/status', admin, adminOrderStatusController().update);
 }
 
 module.exports = initRoutes;
