@@ -30,6 +30,14 @@ orderController = () => {
                 });
             res.header('Cache-Control', 'no-store')
             res.render("customers/orders", { orders, moment }); //opening orders.ejs
+        },
+        async show(req, res) {
+            const order = await Order.findById(req.params.id); // Getting ID dynamically from URL
+            // Authorize user so that no other ID can be used other than actual ID
+            if (req.user._id.toString() === order.customerId.toString()) {
+                return res.render("customers/singleOrderTracker", { order })
+            }
+            return res.redirect("/");
         }
     }
 }

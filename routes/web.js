@@ -20,6 +20,7 @@ initRoutes = (app) => {
     app.get('/login', guest, authController().login);
     app.get('/register', guest, authController().register);
     app.get('/customer/orders', auth, orderController().index);
+    app.get('/customer/orders/:id', auth, orderController().show);
     app.get('/admin/orders', admin, adminOrderController().index);
 
     // Saving data from Client to Server side.
