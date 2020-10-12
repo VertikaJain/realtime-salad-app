@@ -1,6 +1,7 @@
 const axios = require("axios");
 const Noty = require("noty");
 const initAdmin = require("./admin")
+const moment = require("moment");
 
 // Home Page
 let addToCartBtns = document.querySelectorAll(".add-to-cart");
@@ -96,3 +97,24 @@ if (successAlert) {
 }
 
 initAdmin(); // A separate file for admin functionalities
+
+// Single Order Tracker Status Update (rendering)
+function updateStatus(order) {
+    let orderUpdateTime = document.createElement("small");
+    let orderTrackers = document.querySelectorAll(".orderTrackers");
+    order = JSON.parse(order)
+    let stepCompleted = true;
+    orderTrackers.forEach(orderTracker => {
+        if (stepCompleted) orderTracker.classList.add("step-completed")
+        if (order.status === orderTracker.dataset.status) {
+            stepCompleted = false;
+            orderUpdateTime.innerText = moment(order.updatedAt).format("MMM Do YY, hh:mm A")
+            orderTracker.appendChild(orderUpdateTime)
+            if (orderTracker.nextElementSibling) {
+                orderTracker.nextElementSibling.classList.add("current")
+            }
+        }
+    })
+}
+const order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
+updateStatus(order);

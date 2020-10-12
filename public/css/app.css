@@ -499,3 +499,8 @@ section.status {
   color: #83cc1d;
 }
 
+.status-box ul li small {
+  float: right;
+  margin-top: 4px;
+}
+

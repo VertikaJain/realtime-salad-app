@@ -186,3 +186,10 @@ section.status {
 .status-box ul li.current span {
     color: $primary;
 }
+
+// Order Status Time
+.status-box ul li small{
+    float: right;
+    // font-size: 16px;
+    margin-top: 4px;
+}

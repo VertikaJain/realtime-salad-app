@@ -26869,7 +26869,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Noty = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js");
 
-var initAdmin = __webpack_require__(/*! ./admin */ "./resources/javascript/admin.js"); // Home Page
+var initAdmin = __webpack_require__(/*! ./admin */ "./resources/javascript/admin.js");
+
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"); // Home Page
 
 
 var addToCartBtns = document.querySelectorAll(".add-to-cart");
@@ -27021,6 +27023,30 @@ if (successAlert) {
 }
 
 initAdmin(); // A separate file for admin functionalities
+// Single Order Tracker Status Update (rendering)
+
+function updateStatus(order) {
+  var orderUpdateTime = document.createElement("small");
+  var orderTrackers = document.querySelectorAll(".orderTrackers");
+  order = JSON.parse(order);
+  var stepCompleted = true;
+  orderTrackers.forEach(function (orderTracker) {
+    if (stepCompleted) orderTracker.classList.add("step-completed");
+
+    if (order.status === orderTracker.dataset.status) {
+      stepCompleted = false;
+      orderUpdateTime.innerText = moment(order.updatedAt).format("MMM Do YY, hh:mm A");
+      orderTracker.appendChild(orderUpdateTime);
+
+      if (orderTracker.nextElementSibling) {
+        orderTracker.nextElementSibling.classList.add("current");
+      }
+    }
+  });
+}
+
+var order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
+updateStatus(order);
 
 /***/ }),
 
