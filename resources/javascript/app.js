@@ -118,3 +118,13 @@ function updateStatus(order) {
 }
 const order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
 updateStatus(order);
+
+// Socket Configuration
+let socket = io();
+if (order) socket.emit("createRoom", `order_${JSON.parse(order)._id}`) // client sending data to the server to create a private room for each order (since orderId is unique)
+
+socket.on("orderUpdated", data => {
+    const updatedOrder = { ...order } //copying object
+    updatedOrder.updatedAt = moment().format() //storing current time - update.
+    updatedOrder.status = data.status
+})

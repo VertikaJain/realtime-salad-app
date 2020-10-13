@@ -10,6 +10,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 const MongoDbStore = require("connect-mongo")(session);
 const passport = require("passport");
+const Emitter = require("events");
 
 // Database Connection
 mongoose.connect('mongodb://localhost/salad', {
@@ -22,6 +23,10 @@ connection.once("open", () => {
 }).catch(err => {
     console.log("Connection failed. " + err);
 })
+
+// Event Emitter
+const eventEmitter = new Emitter(); // create object
+app.set("eventEmitter", eventEmitter); // bind it to the app.
 
 // Session Store
 const mongoStore = new MongoDbStore({
@@ -64,6 +69,17 @@ app.set('view engine', 'ejs');
 
 require("./routes/web")(app); //IS EQUIVALENT TO: const web = require("./routes/web"); web(app);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
+})
+
+// Socket Integration Setup
+const io = require("socket.io")(server);
+io.on("connection", socket => {
+    socket.on("createRoom", roomName => {
+        socket.join(roomName)
+    })
+})
+eventEmitter.on("updatedOrder", data => {
+    io.to(`order_${data.id}`).emit("orderUpdated", data)
 })
