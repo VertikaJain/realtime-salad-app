@@ -102,8 +102,13 @@ initAdmin(); // A separate file for admin functionalities
 function updateStatus(order) {
     let orderUpdateTime = document.createElement("small");
     let orderTrackers = document.querySelectorAll(".orderTrackers");
-    order = JSON.parse(order)
     let stepCompleted = true;
+    // Remove Existing classes if any.
+    orderTrackers.forEach(orderTracker => {
+        orderTracker.classList.remove("step-completed")
+        orderTracker.classList.remove("current")
+    })
+    // Then add classes based on updated status from the admin.
     orderTrackers.forEach(orderTracker => {
         if (stepCompleted) orderTracker.classList.add("step-completed")
         if (order.status === orderTracker.dataset.status) {
@@ -117,7 +122,7 @@ function updateStatus(order) {
     })
 }
 const order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
-updateStatus(order);
+updateStatus(JSON.parse(order));
 
 // Socket Configuration
 let socket = io();
@@ -127,4 +132,8 @@ socket.on("orderUpdated", data => {
     const updatedOrder = { ...order } //copying object
     updatedOrder.updatedAt = moment().format() //storing current time - update.
     updatedOrder.status = data.status
+    updateStatus(updatedOrder) // to update on frontend
+    new Noty({
+        type: "success", timeout: 1000, text: 'Order Status Update', progressBar: false
+    }).show();
 })

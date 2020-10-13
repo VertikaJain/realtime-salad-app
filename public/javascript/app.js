@@ -27034,8 +27034,13 @@ initAdmin(); // A separate file for admin functionalities
 function updateStatus(order) {
   var orderUpdateTime = document.createElement("small");
   var orderTrackers = document.querySelectorAll(".orderTrackers");
-  order = JSON.parse(order);
-  var stepCompleted = true;
+  var stepCompleted = true; // Remove Existing classes if any.
+
+  orderTrackers.forEach(function (orderTracker) {
+    orderTracker.classList.remove("step-completed");
+    orderTracker.classList.remove("current");
+  }); // Then add classes based on updated status from the admin.
+
   orderTrackers.forEach(function (orderTracker) {
     if (stepCompleted) orderTracker.classList.add("step-completed");
 
@@ -27052,7 +27057,7 @@ function updateStatus(order) {
 }
 
 var order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
-updateStatus(order); // Socket Configuration
+updateStatus(JSON.parse(order)); // Socket Configuration
 
 var socket = io();
 if (order) socket.emit("createRoom", "order_".concat(JSON.parse(order)._id)); // client sending data to the server to create a private room for each order (since orderId is unique)
@@ -27064,6 +27069,14 @@ socket.on("orderUpdated", function (data) {
   updatedOrder.updatedAt = moment().format(); //storing current time - update.
 
   updatedOrder.status = data.status;
+  updateStatus(updatedOrder); // to update on frontend
+
+  new Noty({
+    type: "success",
+    timeout: 1000,
+    text: 'Order Status Update',
+    progressBar: false
+  }).show();
 });
 
 /***/ }),
