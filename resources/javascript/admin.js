@@ -1,7 +1,8 @@
 const axios = require("axios");
 const moment = require("moment");
+const Noty = require("noty");
 
-initAdmin = () => {
+initAdmin = socket => {
     const orderTableBody = document.getElementById("orderTableBody");
     let orders = [];
 
@@ -69,6 +70,16 @@ initAdmin = () => {
             return `<p>${menuItem.item.name} - ${menuItem.qty} pcs </p>`
         }).join('');
     }
+
+    // Listen Event from Server
+    socket.on("orderPlaced", order => {
+        new Noty({
+            type: "success", timeout: 1000, text: 'New Order Placed', progressBar: false
+        }).show();
+        orders.unshift(order);
+        orderTableBody.innerHTML = "";
+        orderTableBody.innerHTML = generateOrdersMarkup(orders);
+    })
 }
 
 module.exports = initAdmin;

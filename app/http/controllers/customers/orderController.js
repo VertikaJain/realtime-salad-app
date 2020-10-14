@@ -15,9 +15,14 @@ orderController = () => {
                 customerId: req.user._id, items: req.session.cart.items, phone, address
             }).save().then(result => {
                 req.flash("success", "Order placed successfully.");
-                // Remove cart once ordered
-                delete req.session.cart;
-                return res.redirect("/customer/orders");
+                Order.populate(result, { path: "customerId" }, (err, data) => {
+                    // Emit event For Dynamic Update on Admin page when order is successfully placed
+                    const eventEmitter = req.app.get("eventEmitter");
+                    eventEmitter.emit("placedOrder", data);
+                    // Remove cart once ordered
+                    delete req.session.cart;
+                    return res.redirect("/customer/orders");
+                })
             }).catch(err => {
                 req.flash("error", "Something went wrong");
                 return res.redirect("/cart");

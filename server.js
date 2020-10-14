@@ -76,10 +76,8 @@ const server = app.listen(PORT, () => {
 // Socket Integration Setup
 const io = require("socket.io")(server);
 io.on("connection", socket => {
-    socket.on("createRoom", roomName => {
-        socket.join(roomName)
-    })
+    socket.on("createCustomerRoom", roomName => socket.join(roomName))
+    socket.on("createAdminRoom", roomName => socket.join(roomName))
 })
-eventEmitter.on("updatedOrder", data => {
-    io.to(`order_${data.id}`).emit("orderUpdated", data)
-})
+eventEmitter.on("updatedOrder", data => io.to(`order_${data.id}`).emit("orderUpdated", data))
+eventEmitter.on("placedOrder", data => io.to("adminRoom").emit("orderPlaced", data))

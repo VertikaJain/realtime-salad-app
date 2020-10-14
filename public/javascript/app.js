@@ -26820,7 +26820,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
-initAdmin = function initAdmin() {
+var Noty = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js");
+
+initAdmin = function initAdmin(socket) {
   var orderTableBody = document.getElementById("orderTableBody");
   var orders = [];
   axios.get("/admin/orders", {
@@ -26845,7 +26847,20 @@ initAdmin = function initAdmin() {
     return parsedItems.map(function (menuItem) {
       return "<p>".concat(menuItem.item.name, " - ").concat(menuItem.qty, " pcs </p>");
     }).join('');
-  };
+  }; // Listen Event from Server
+
+
+  socket.on("orderPlaced", function (order) {
+    new Noty({
+      type: "success",
+      timeout: 1000,
+      text: 'New Order Placed',
+      progressBar: false
+    }).show();
+    orders.unshift(order);
+    orderTableBody.innerHTML = "";
+    orderTableBody.innerHTML = generateOrdersMarkup(orders);
+  });
 };
 
 module.exports = initAdmin;
@@ -27026,19 +27041,17 @@ if (successAlert) {
   setTimeout(function () {
     successAlert.remove();
   }, 2000);
-}
+} // Single Order Tracker Status Update (rendering)
 
-initAdmin(); // A separate file for admin functionalities
-// Single Order Tracker Status Update (rendering)
 
 function updateStatus(order) {
-  var orderUpdateTime = document.createElement("small");
   var orderTrackers = document.querySelectorAll(".orderTrackers");
   var stepCompleted = true; // Remove Existing classes if any.
 
   orderTrackers.forEach(function (orderTracker) {
     orderTracker.classList.remove("step-completed");
     orderTracker.classList.remove("current");
+    orderUpdateTime.innerText = "";
   }); // Then add classes based on updated status from the admin.
 
   orderTrackers.forEach(function (orderTracker) {
@@ -27056,11 +27069,14 @@ function updateStatus(order) {
   });
 }
 
+var orderUpdateTime = document.createElement("small");
 var order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
 updateStatus(JSON.parse(order)); // Socket Configuration
 
 var socket = io();
-if (order) socket.emit("createRoom", "order_".concat(JSON.parse(order)._id)); // client sending data to the server to create a private room for each order (since orderId is unique)
+initAdmin(socket); // A separate file for admin functionalities
+
+if (order) socket.emit("createCustomerRoom", "order_".concat(JSON.parse(order)._id)); // client sending data to the server to create a private room for each order (since orderId is unique)
 
 socket.on("orderUpdated", function (data) {
   var updatedOrder = _objectSpread({}, order); //copying object
@@ -27077,7 +27093,10 @@ socket.on("orderUpdated", function (data) {
     text: 'Order Status Update',
     progressBar: false
   }).show();
-});
+}); // For Dynamic Update on Admin page without page refresh
+
+var adminPath = window.location.pathname;
+if (adminPath.includes("admin")) socket.emit("createAdminRoom", "adminRoom");
 
 /***/ }),
 

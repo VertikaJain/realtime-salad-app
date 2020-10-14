@@ -96,17 +96,15 @@ if (successAlert) {
     }, 2000);
 }
 
-initAdmin(); // A separate file for admin functionalities
-
 // Single Order Tracker Status Update (rendering)
 function updateStatus(order) {
-    let orderUpdateTime = document.createElement("small");
     let orderTrackers = document.querySelectorAll(".orderTrackers");
     let stepCompleted = true;
     // Remove Existing classes if any.
     orderTrackers.forEach(orderTracker => {
         orderTracker.classList.remove("step-completed")
         orderTracker.classList.remove("current")
+        orderUpdateTime.innerText = ""
     })
     // Then add classes based on updated status from the admin.
     orderTrackers.forEach(orderTracker => {
@@ -121,12 +119,15 @@ function updateStatus(order) {
         }
     })
 }
+let orderUpdateTime = document.createElement("small");
 const order = document.getElementById("hiddenOrderInput") ? document.getElementById("hiddenOrderInput").value : null;
 updateStatus(JSON.parse(order));
 
 // Socket Configuration
 let socket = io();
-if (order) socket.emit("createRoom", `order_${JSON.parse(order)._id}`) // client sending data to the server to create a private room for each order (since orderId is unique)
+initAdmin(socket); // A separate file for admin functionalities
+
+if (order) socket.emit("createCustomerRoom", `order_${JSON.parse(order)._id}`) // client sending data to the server to create a private room for each order (since orderId is unique)
 
 socket.on("orderUpdated", data => {
     const updatedOrder = { ...order } //copying object
@@ -137,3 +138,7 @@ socket.on("orderUpdated", data => {
         type: "success", timeout: 1000, text: 'Order Status Update', progressBar: false
     }).show();
 })
+
+// For Dynamic Update on Admin page without page refresh
+let adminPath = window.location.pathname;
+if (adminPath.includes("admin")) socket.emit("createAdminRoom", "adminRoom")
