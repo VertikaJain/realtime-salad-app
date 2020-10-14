@@ -42,9 +42,10 @@
                     <% if(messages.error) { %>
                     <div class="text-red-500 text-sm"><%= messages.error%></div>
                     <% } %>
-                    <input name="phone" class="border border-gray-400 p-2 w-1/2 mb-4" type="text"
-                        placeholder="Phone Number">
-                    <input name="address" class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Address">
+                    <input name="phone" value="<%= messages.phone %>" class="border border-gray-400 p-2 w-1/2 mb-4"
+                        type="text" placeholder="Phone Number">
+                    <input name="address" value="<%= messages.address %>" class="border border-gray-400 p-2 w-1/2"
+                        type="text" placeholder="Address">
                     <div>
                         <button
                             class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-6 rounded focus:outline-none focus:shadow-outline"

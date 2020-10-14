@@ -27074,8 +27074,6 @@ var order = document.getElementById("hiddenOrderInput") ? document.getElementByI
 updateStatus(JSON.parse(order)); // Socket Configuration
 
 var socket = io();
-initAdmin(socket); // A separate file for admin functionalities
-
 if (order) socket.emit("createCustomerRoom", "order_".concat(JSON.parse(order)._id)); // client sending data to the server to create a private room for each order (since orderId is unique)
 
 socket.on("orderUpdated", function (data) {
@@ -27096,7 +27094,12 @@ socket.on("orderUpdated", function (data) {
 }); // For Dynamic Update on Admin page without page refresh
 
 var adminPath = window.location.pathname;
-if (adminPath.includes("admin")) socket.emit("createAdminRoom", "adminRoom");
+
+if (adminPath.includes("admin")) {
+  initAdmin(socket); // A separate file for admin functionalities
+
+  socket.emit("createAdminRoom", "adminRoom");
+}
 
 /***/ }),
 

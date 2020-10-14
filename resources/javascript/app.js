@@ -125,7 +125,6 @@ updateStatus(JSON.parse(order));
 
 // Socket Configuration
 let socket = io();
-initAdmin(socket); // A separate file for admin functionalities
 
 if (order) socket.emit("createCustomerRoom", `order_${JSON.parse(order)._id}`) // client sending data to the server to create a private room for each order (since orderId is unique)
 
@@ -141,4 +140,7 @@ socket.on("orderUpdated", data => {
 
 // For Dynamic Update on Admin page without page refresh
 let adminPath = window.location.pathname;
-if (adminPath.includes("admin")) socket.emit("createAdminRoom", "adminRoom")
+if (adminPath.includes("admin")) {
+    initAdmin(socket); // A separate file for admin functionalities
+    socket.emit("createAdminRoom", "adminRoom")
+}

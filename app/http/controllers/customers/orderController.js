@@ -8,6 +8,14 @@ orderController = () => {
             const { phone, address } = req.body;
             if (!phone || !address) {
                 req.flash("error", "All fields are required.");
+                req.flash("phone", phone);
+                req.flash("address", address);
+                return res.redirect("/cart");
+            }
+            if (phone.length != 10) { //Verify phone number
+                req.flash("error", "Invalid phone number.");
+                req.flash("phone", "");
+                req.flash("address", address);
                 return res.redirect("/cart");
             }
             // Store/save Orders data to orders collection in MongoDB
