@@ -14,12 +14,12 @@
 </head>
 
 <body>
-    <nav class="fixed flex w-full bg-white items-center justify-between py-4 px-32 m-auto shadow-md">
+    <nav class="container mx-auto flex items-center justify-between py-4">
         <div>
             <a href="/"><img src="/images/logo.jpg" alt="logo"></a>
         </div>
         <div>
-            <ul class="flex items-center">
+            <ul class="flex items-center text-xs md:text-base">
                 <li class="ml-6"><a href="/#saladMenu">Menu</a></li>
                 <% if(user.role === "admin") { %>
                 <li class="ml-6"><a href="/admin/orders">View Orders</a></li>
@@ -44,7 +44,7 @@
             </ul>
         </div>
     </nav>
-    <div class="pt-20">
+    <div>
         <%- body%>
     </div>
     <footer class="text-center italic py-8 shadow-inner">"Good food is the foundation of Genuine Happiness"</footer>
