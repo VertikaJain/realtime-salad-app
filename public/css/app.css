@@ -504,3 +504,9 @@ section.status {
   margin-top: 4px;
 }
 
+@media (max-width: 1060px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
