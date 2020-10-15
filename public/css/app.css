@@ -398,6 +398,10 @@ a.link {
   color: #83cc1d;
 }
 
+.orders {
+  background: #fafff1;
+}
+
 section.status {
   background: #fafff1;
   min-height: calc(100vh - 140px);
@@ -507,6 +511,18 @@ section.status {
 @media (max-width: 1060px) {
   .container {
     max-width: 90%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .status-box ul li span:before {
+    font-size: 34px;
   }
 }
 

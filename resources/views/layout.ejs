@@ -21,13 +21,12 @@
         <div>
             <ul class="flex items-center text-xs md:text-base">
                 <li class="ml-6"><a href="/#saladMenu">Menu</a></li>
+                <% if(user) { %>
                 <% if(user.role === "admin") { %>
                 <li class="ml-6"><a href="/admin/orders">View Orders</a></li>
                 <% } else { %>
                 <li class="ml-6"><a href="/customer/orders">My Orders</a></li>
                 <% } %>
-
-                <% if(user) { %>
                 <li class="ml-6">
                     <form id="logout" action="/logout" method="POST">
                         <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
