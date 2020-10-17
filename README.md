@@ -52,7 +52,8 @@
   15. `yarn add noty` (notification library that makes it easy to create alert, success, error, warning, information and confirmation messages)
   16. `yarn add bcrypt` (A library which helps in hashing passwords)
   17. `yarn add passport passport-local` (Authentication)
-  18. `yarn add moment` (A JavaScript date library for parsing, validating, manipulating, and formatting dates.)
+  18. `yarn add moment` (A JavaScript date library for parsing, validating, manipulating, and formatting dates)
+  19. `yarn add socket.io` (real-time bidirectional event-based communication)
 
 ## NPM Commands
   *NPM package manager is automatically downloaded with NodeJS, and it can be used as an **alternative to YARN**. Since NPM has a drawback that it works quite slow when compared with YARN (as YARN installs dependencies simultaneously), I will be using YARN in this project. However, I am providing NPM commands as well for reference.*
@@ -74,6 +75,7 @@
   16. npm install bcrypt
   17. npm install passport passport-local
   18. npm install moment
+  19. npm install socket.io
 
 ## GIT Commands
 ```
@@ -133,6 +135,7 @@
   - [Mongoose findById() method](https://kb.objectrocket.com/mongo-db/mongoose-findbyid-1415)
   - [Mongoose findOne() method](https://kb.objectrocket.com/mongo-db/mongoose-find-one-1409)
   - [Mongoose populate() method](https://mongoosejs.com/docs/populate.html)
+  - [Aggregation $ne](https://docs.mongodb.com/manual/reference/operator/aggregation/ne/)
 
 ## Hashing Passwords using bcrypt library
   *Using [bcrypt](https://www.npmjs.com/package/bcrypt) is a secured way to store passwords in a database regardless of whatever language the app’s backend is built in — PHP, Ruby, Python, Node.js.*
@@ -157,6 +160,12 @@
   - 'auth' middleware ensures that user redirects to customer/orders page only when logged in.
   - 'admin' middleware ensures that only the admin has access to the admin/orders page once logged in.
 
+## Socket.io Integration
+  - Fetching the library in layout file using- `<script src="/socket.io/socket.io.js"></script>`
+  - Created a separate room for each Order & one for Admin using- `io.on("connection",())`
+  - Used EventEmitter to emit events of Order & status updates. Binded the eventEmitter to the app using- `app.set("eventEmitter", eventEmitter)`
+  - The main purpose is to update Admin Orders page & Customer Status Tracker page dynamically, without page refresh.
+
 ## Resources
   - [Realtime Pizza App by Coder's Gyan](https://www.youtube.com/watch?v=RqiU5nzj_nU&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&ab_channel=Coder%27sGyan)
   - [Google Font Lato](https://fonts.google.com/specimen/Lato)
@@ -176,3 +185,5 @@
   - [Moment.js](https://momentjs.com/)
   - [req.xhr](https://expressjs.com/en/4x/api.html#req.xhr)
   - [Cache Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control)
+  - [Pseudo Elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+  - [Line Awesome](https://icons8.com/line-awesome)
