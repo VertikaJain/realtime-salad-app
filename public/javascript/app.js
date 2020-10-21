@@ -26922,13 +26922,22 @@ try {
 
 updateCart = function updateCart(salad) {
   axios.post("/update-cart", salad).then(function (res) {
-    cartCounter.innerText = res.data.totalQty;
-    new Noty({
-      type: "success",
-      timeout: 1000,
-      text: 'Item added to Cart',
-      progressBar: false
-    }).show();
+    if (!res.data) {
+      new Noty({
+        type: "error",
+        timeout: 1000,
+        text: 'You cannot Add items to cart.',
+        progressBar: false
+      }).show();
+    } else {
+      cartCounter.innerText = res.data.totalQty;
+      new Noty({
+        type: "success",
+        timeout: 1000,
+        text: 'Item added to Cart',
+        progressBar: false
+      }).show();
+    }
   })["catch"](function (err) {
     new Noty({
       type: "error",
